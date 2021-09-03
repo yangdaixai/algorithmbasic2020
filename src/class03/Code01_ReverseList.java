@@ -28,24 +28,30 @@ public class Code01_ReverseList {
 	//   a    ->   b    ->  c  ->  null
 	//   c    ->   b    ->  a  ->  null
 	public static Node reverseLinkedList(Node head) {
-		Node pre = null;
-		Node next = null;
+		Node next = null; //暂存翻转前节点指向的(即node前.nest = next)//
+		Node pre = null;  //暂存翻转后节点指向的（即 node后.next=pre）
+
 		while (head != null) {
-			next = head.next;
-			head.next = pre;
-			pre = head;
-			head = next;
+			//翻转
+			next = head.next; //保留翻转前的现场
+			head.next = pre; // 翻转，将node.next指向翻转
+			//移动head为洗一个节点翻转做准备
+			pre = head;  //往后移动pre
+			head = next; //往后移动head
 		}
 		return pre;
 	}
 
 	public static DoubleNode reverseDoubleList(DoubleNode head) {
+		//思想和单向链表翻转一样，就是多了一个head.last = next;
 		DoubleNode pre = null;
 		DoubleNode next = null;
 		while (head != null) {
+			//翻转
 			next = head.next;
 			head.next = pre;
 			head.last = next;
+			//后移
 			pre = head;
 			head = next;
 		}

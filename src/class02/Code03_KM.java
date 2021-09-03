@@ -5,22 +5,22 @@ import java.util.HashSet;
 
 public class Code03_KM {
 
-	public static int test(int[] arr, int k, int m) {
-		HashMap<Integer, Integer> map = new HashMap<>();
-		for (int num : arr) {
-			if (map.containsKey(num)) {
-				map.put(num, map.get(num) + 1);
-			} else {
-				map.put(num, 1);
+		public static int test(int[] arr, int k, int m) {
+			HashMap<Integer, Integer> map = new HashMap<>();
+			for (int num : arr) {
+				if (map.containsKey(num)) {
+					map.put(num, map.get(num) + 1);
+				} else {
+					map.put(num, 1);
+				}
 			}
-		}
-		for (int num : map.keySet()) {
-			if (map.get(num) == k) {
-				return num;
+			for (int num : map.keySet()) {
+				if (map.get(num) == k) {
+					return num;
+				}
 			}
+			return -1;
 		}
-		return -1;
-	}
 
 	public static HashMap<Integer, Integer> map = new HashMap<>();
 
@@ -30,16 +30,26 @@ public class Code03_KM {
 			mapCreater(map);
 		}
 		int[] t = new int[32];
+		//用一个长度为32的数据保存每个数二进制格式种对应位置1的个数，
+		//如果某个位置1的个数与M取模等0，说明出现出现1的个数是M的整数被，即二进制格式种此位置出现K次的那个数为0
+		// 如果取模等于K ,说明二进制格式种此位置出现K次的那个数为1
 		// t[0] 0位置的1出现了几个
 		// t[i] i位置的1出现了几个
+
+		//用一个长度为32的数据保存每个数二进制格式种对应位置1的个数
 		for (int num : arr) {
-			while (num != 0) {
+			for(int i= 0; i < 32; i++) {
+				t[i] += (num >> i ) & 1;
+			}
+
+/*			while (num != 0) {
 				int rightOne = num & (-num);
 				t[map.get(rightOne)]++;
 				num ^= rightOne;
-			}
+			}*/
 		}
 		int ans = 0;
+		//取模计算出现k次数
 		for (int i = 0; i < 32; i++) {
 			if (t[i] % m != 0) {
 				if (t[i] % m == k) {
@@ -49,6 +59,8 @@ public class Code03_KM {
 				}
 			}
 		}
+
+		//出现K次数是0这个数情况
 		if (ans == 0) {
 			int count = 0;
 			for (int num : arr) {

@@ -1,7 +1,7 @@
 package class01;
 
 import java.util.Arrays;
-
+ // 二分查找，找到给给定值的位置
 public class Code04_BSExist {
 
 	public static boolean exist(int[] sortedArr, int num) {
@@ -13,7 +13,8 @@ public class Code04_BSExist {
 		int mid = 0;
 		// L..R
 		while (L < R) { // L..R 至少两个数的时候
-			mid = L + ((R - L) >> 1);
+			//L+(R-L)/2 位移运算比除法快
+			mid = L + ((R - L) >> 1); //min= (L+R)/2 L+R有可能溢出
 			if (sortedArr[mid] == num) {
 				return true;
 			} else if (sortedArr[mid] > num) {

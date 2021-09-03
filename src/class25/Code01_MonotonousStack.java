@@ -15,18 +15,26 @@ public class Code01_MonotonousStack {
 	//     3 : [ 2, -1]
 	//  ]
 	public static int[][] getNearLessNoRepeat(int[] arr) {
+		//0位置放左测最近小与的值，1位置放右测最近小与的值
 		int[][] res = new int[arr.length][2];
 		// 只存位置！
 		Stack<Integer> stack = new Stack<>();
 		for (int i = 0; i < arr.length; i++) { // 当遍历到i位置的数，arr[i]
+			//如果要入栈的值,比栈顶的值小，
 			while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
+				//再入栈就破坏了栈底小栈顶大的规则，要将栈顶弹出
 				int j = stack.pop();
+				//左侧最靠近的比其小的值就是其栈中压在下面的第一个值
 				int leftLessIndex = stack.isEmpty() ? -1 : stack.peek();
 				res[j][0] = leftLessIndex;
+				//弹出的值的右侧离其最近的小于自己的值就是，即将入栈的值
 				res[j][1] = i;
 			}
+			//如果要入栈的值,比栈顶的值大，入栈
 			stack.push(i);
 		}
+
+		//最后算栈里剩的
 		while (!stack.isEmpty()) {
 			int j = stack.pop();
 			int leftLessIndex = stack.isEmpty() ? -1 : stack.peek();
@@ -41,16 +49,21 @@ public class Code01_MonotonousStack {
 		Stack<List<Integer>> stack = new Stack<>();
 		for (int i = 0; i < arr.length; i++) { // i -> arr[i] 进栈
 			while (!stack.isEmpty() && arr[stack.peek().get(0)] > arr[i]) {
+				//弹出的是一个链表，所以要计算链表中的每一个值
 				List<Integer> popIs = stack.pop();
+				//取出的下面链表中的最后一个位置的值
 				int leftLessIndex = stack.isEmpty() ? -1 : stack.peek().get(stack.peek().size() - 1);
+				//计算链表中的每一个值
 				for (Integer popi : popIs) {
 					res[popi][0] = leftLessIndex;
 					res[popi][1] = i;
 				}
 			}
+			////如果要入栈的值,等于栈顶的链表中存放位置的值，放栈顶链表中
 			if (!stack.isEmpty() && arr[stack.peek().get(0)] == arr[i]) {
 				stack.peek().add(Integer.valueOf(i));
 			} else {
+				//如果要入栈的值,比栈顶的值大，新建一个链表放入栈顶
 				ArrayList<Integer> list = new ArrayList<>();
 				list.add(i);
 				stack.push(list);

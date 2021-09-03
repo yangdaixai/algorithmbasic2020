@@ -58,14 +58,17 @@ public class Code01_FindFirstIntersectNode {
 		Node cur1 = head1;
 		Node cur2 = head2;
 		int n = 0;
+		//计算链表1的长度
 		while (cur1.next != null) {
 			n++;
 			cur1 = cur1.next;
 		}
+		//计算链表2的长度
 		while (cur2.next != null) {
 			n--;
 			cur2 = cur2.next;
 		}
+		//链表1和链表2的最后一个节点不相等，则两个链表没有相交
 		if (cur1 != cur2) {
 			return null;
 		}
@@ -73,10 +76,12 @@ public class Code01_FindFirstIntersectNode {
 		cur1 = n > 0 ? head1 : head2; // 谁长，谁的头变成cur1
 		cur2 = cur1 == head1 ? head2 : head1; // 谁短，谁的头变成cur2
 		n = Math.abs(n);
+		//长的链表先走，两个链表的长度差值步
 		while (n != 0) {
 			n--;
 			cur1 = cur1.next;
 		}
+		//两个链表一起走，相等时即是第一个相交节点
 		while (cur1 != cur2) {
 			cur1 = cur1.next;
 			cur2 = cur2.next;
@@ -85,9 +90,11 @@ public class Code01_FindFirstIntersectNode {
 	}
 
 	// 两个有环链表，返回第一个相交节点，如果不想交返回null
+	//loop1 和loop2分别是两个有环链表额第一个入环节点
 	public static Node bothLoop(Node head1, Node loop1, Node head2, Node loop2) {
 		Node cur1 = null;
 		Node cur2 = null;
+		//loop1 == loop2 对应图1
 		if (loop1 == loop2) {
 			cur1 = head1;
 			cur2 = head2;
@@ -113,7 +120,9 @@ public class Code01_FindFirstIntersectNode {
 			}
 			return cur1;
 		} else {
+			//loop1 1= loop2 对应图2和图3
 			cur1 = loop1.next;
+			//返回其中的一个一个相交节点
 			while (cur1 != loop1) {
 				if (cur1 == loop2) {
 					return loop1;

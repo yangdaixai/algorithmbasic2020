@@ -16,9 +16,9 @@ public class Code01_Swap {
 		System.out.println(b);
 		
 		
-		a = a ^ b;
 		b = a ^ b;
 		a = a ^ b;
+		b = a ^ b;
 		
 		
 		System.out.println(a);

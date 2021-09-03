@@ -14,13 +14,15 @@ public class Code02_DeleteGivenValue {
 	// head = removeValue(head, 2);
 	public static Node removeValue(Node head, int num) {
 		// head来到第一个不需要删的位置
+		// 1 )  链表中的值都是num 则head == null
+		//如果head.vale=num,需要返回新的head
 		while (head != null) {
 			if (head.value != num) {
 				break;
 			}
 			head = head.next;
 		}
-		// 1 ) head == null
+
 		// 2 ) head != null
 		Node pre = head;
 		Node cur = head;

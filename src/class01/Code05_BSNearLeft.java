@@ -1,7 +1,7 @@
 package class01;
 
 import java.util.Arrays;
-
+// 二分查找，找满足大于等于value的最左位置
 public class Code05_BSNearLeft {
 
 	// 在arr上，找满足>=value的最左位置

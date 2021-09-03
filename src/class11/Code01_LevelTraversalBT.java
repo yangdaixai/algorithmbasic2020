@@ -19,6 +19,7 @@ public class Code01_LevelTraversalBT {
 		if (head == null) {
 			return;
 		}
+		//LinkedList可以最为队列
 		Queue<Node> queue = new LinkedList<>();
 		queue.add(head);
 		while (!queue.isEmpty()) {

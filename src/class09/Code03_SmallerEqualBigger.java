@@ -97,6 +97,7 @@ public class Code03_SmallerEqualBigger {
 			head = next;
 		}
 		// 小于区域的尾巴，连等于区域的头，等于区域的尾巴连大于区域的头
+		//小于区域和等于区域连接
 		if (sT != null) { // 如果有小于区域
 			sT.next = eH;
 			eT = eT == null ? sT : eT; // 下一步，谁去连大于区域的头，谁就变成eT
@@ -105,7 +106,8 @@ public class Code03_SmallerEqualBigger {
 		// 有等于区域，eT -> 等于区域的尾结点
 		// 无等于区域，eT -> 小于区域的尾结点
 		// eT 尽量不为空的尾巴节点
-		if (eT != null) { // 如果小于区域和等于区域，不是都没有
+		//等于区域和大于区域连接
+		if (eT != null) { // 小于区域和等于区域，可能都没有
 			eT.next = mH;
 		}
 		return sH != null ? sH : (eH != null ? eH : mH);

@@ -32,18 +32,23 @@ public class Code01_SlidingWindowMaxArray {
 			return null;
 		}
 		// qmax 窗口最大值的更新结构
-		// 放下标
+		// qmax 中放数组的下标
+		//linkedList可以当作双端队列
 		LinkedList<Integer> qmax = new LinkedList<Integer>();
+		//放找出的最大结果
 		int[] res = new int[arr.length - w + 1];
 		int index = 0;
 		for (int R = 0; R < arr.length; R++) {
+			//把双端队列中小于等于当前值从尾部弹出，并从尾部放入当前值
 			while (!qmax.isEmpty() && arr[qmax.peekLast()] <= arr[R]) {
 				qmax.pollLast();
 			}
 			qmax.addLast(R);
+			//从头部弹出双端队列中不在当前窗口中的值
 			if (qmax.peekFirst() == R - w) {
 				qmax.pollFirst();
 			}
+			//判断窗口的长度是否到达w
 			if (R >= w - 1) {
 				res[index++] = arr[qmax.peekFirst()];
 			}

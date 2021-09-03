@@ -23,8 +23,7 @@ public class Code02_EvenTimesOddTimes {
 		// eor :     00110010110111000
 		// rightOne :00000000000001000
 		int rightOne = eor & (-eor); // 提取出最右的1
-		
-		
+
 		int onlyOne = 0; // eor'
 		for (int i = 0 ; i < arr.length;i++) {
 			//  arr[1] =  111100011110000
@@ -45,17 +44,15 @@ public class Code02_EvenTimesOddTimes {
 		
 		//   011011000000
 		// 
-		
-		
-		
+
 		while(N != 0) {
-			int rightOne = N & ((~N) + 1);
+			//取反加1也就是自己的相反数
+			int rightOne = N & ((~N) + 1); //~N 取反
 			count++;
 			N ^= rightOne;
 			// N -= rightOne
 		}
-		
-		
+
 		return count;
 		
 	}

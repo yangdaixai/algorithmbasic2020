@@ -13,7 +13,8 @@ public class Code03_UnRecursiveTraversalBT {
 			value = v;
 		}
 	}
-
+	//先中后，指的是头打印的位置
+	// 先序打印所有节点 //先序遍历, 头左右
 	public static void pre(Node head) {
 		System.out.print("pre-order: ");
 		if (head != null) {
@@ -22,9 +23,12 @@ public class Code03_UnRecursiveTraversalBT {
 			while (!stack.isEmpty()) {
 				head = stack.pop();
 				System.out.print(head.value + " ");
+				// 因为是先序，头左右 ，所以进栈的一定先右后左，出栈的时候才能先左后右
+				// 有右压入右
 				if (head.right != null) {
 					stack.push(head.right);
 				}
+				//有左压入左
 				if (head.left != null) {
 					stack.push(head.left);
 				}
@@ -32,25 +36,26 @@ public class Code03_UnRecursiveTraversalBT {
 		}
 		System.out.println();
 	}
-
+	//中序遍历, 左头右
 	public static void in(Node cur) {
 		System.out.print("in-order: ");
 		if (cur != null) {
 			Stack<Node> stack = new Stack<Node>();
 			while (!stack.isEmpty() || cur != null) {
+				//先压入整条左边界
 				if (cur != null) {
 					stack.push(cur);
 					cur = cur.left;
 				} else {
+					//取出打印
 					cur = stack.pop();
 					System.out.print(cur.value + " ");
 					cur = cur.right;
 				}
 			}
 		}
-		System.out.println();
 	}
-
+	//后续遍历 左右头
 	public static void pos1(Node head) {
 		System.out.print("pos-order: ");
 		if (head != null) {
@@ -59,6 +64,7 @@ public class Code03_UnRecursiveTraversalBT {
 			s1.push(head);
 			while (!s1.isEmpty()) {
 				head = s1.pop(); // 头 右 左
+				//先续打印的时候不打印，直接放到最后一个栈中
 				s2.push(head);
 				if (head.left != null) {
 					s1.push(head.left);
@@ -68,6 +74,7 @@ public class Code03_UnRecursiveTraversalBT {
 				}
 			}
 			// 左 右 头
+			//最后再打印 第二个栈
 			while (!s2.isEmpty()) {
 				System.out.print(s2.pop().value + " ");
 			}
@@ -75,26 +82,6 @@ public class Code03_UnRecursiveTraversalBT {
 		System.out.println();
 	}
 
-	public static void pos2(Node h) {
-		System.out.print("pos-order: ");
-		if (h != null) {
-			Stack<Node> stack = new Stack<Node>();
-			stack.push(h);
-			Node c = null;
-			while (!stack.isEmpty()) {
-				c = stack.peek();
-				if (c.left != null && h != c.left && h != c.right) {
-					stack.push(c.left);
-				} else if (c.right != null && h != c.right) {
-					stack.push(c.right);
-				} else {
-					System.out.print(stack.pop().value + " ");
-					h = c;
-				}
-			}
-		}
-		System.out.println();
-	}
 
 	public static void main(String[] args) {
 		Node head = new Node(1);
@@ -111,8 +98,7 @@ public class Code03_UnRecursiveTraversalBT {
 		System.out.println("========");
 		pos1(head);
 		System.out.println("========");
-		pos2(head);
-		System.out.println("========");
+
 	}
 
 }

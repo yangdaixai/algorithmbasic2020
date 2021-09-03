@@ -13,7 +13,7 @@ public class Code02_IsPalindromeList {
 		}
 	}
 
-	// need n extra space
+	// 使用栈方法实现need n extra space
 	public static boolean isPalindrome1(Node head) {
 		Stack<Node> stack = new Stack<Node>();
 		Node cur = head;
@@ -62,9 +62,10 @@ public class Code02_IsPalindromeList {
 		}
 		Node n1 = head;
 		Node n2 = head;
+		// 使用快慢指针获取中点位置
 		while (n2.next != null && n2.next.next != null) { // find mid node
-			n1 = n1.next; // n1 -> mid
-			n2 = n2.next.next; // n2 -> end
+			n1 = n1.next; // n1 -> mid 慢指针
+			n2 = n2.next.next; // n2 -> end  快指针
 		}
 		// n1 中点
 		
@@ -72,6 +73,7 @@ public class Code02_IsPalindromeList {
 		n2 = n1.next; // n2 -> right part first node
 		n1.next = null; // mid.next -> null
 		Node n3 = null;
+		//翻转后半部分链表
 		while (n2 != null) { // right part convert
 			n3 = n2.next; // n3 -> save next node
 			n2.next = n1; // next of right node convert
@@ -81,6 +83,7 @@ public class Code02_IsPalindromeList {
 		n3 = n1; // n3 -> save last node
 		n2 = head;// n2 -> left first node
 		boolean res = true;
+//对比
 		while (n1 != null && n2 != null) { // check palindrome
 			if (n1.value != n2.value) {
 				res = false;
@@ -91,6 +94,7 @@ public class Code02_IsPalindromeList {
 		}
 		n1 = n3.next;
 		n3.next = null;
+		//把之前翻转后半部分再调整过来
 		while (n1 != null) { // recover list
 			n2 = n1.next;
 			n1.next = n3;

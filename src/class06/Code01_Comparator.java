@@ -36,6 +36,8 @@ public class Code01_Comparator {
 
 	public static class IdAscendingComparator implements Comparator<Student> {
 
+		//自定义比较器
+		//任何比较器的compare方法规则：
 		// 返回负数的时候，第一个参数排在前面
 		// 返回正数的时候，第二个参数排在前面
 		// 返回0的时候，谁在前面无所谓
@@ -45,7 +47,7 @@ public class Code01_Comparator {
 		}
 
 	}
-
+	//自定义比较器
 	public static class IdDescendingComparator implements Comparator<Student> {
 
 		@Override
@@ -93,6 +95,8 @@ public class Code01_Comparator {
 
 	public static class AComp implements Comparator<Integer> {
 
+		//自定义比较器
+		//任何比较器的compare方法规则：
 		// 如果返回负数，认为第一个参数应该拍在前面
 		// 如果返回正数，认为第二个参数应该拍在前面
 		// 如果返回0，认为谁放前面都行
@@ -153,7 +157,8 @@ public class Code01_Comparator {
 		student3 = new Student("C", 4, 12);
 		student4 = new Student("D", 4, 62);
 		student5 = new Student("E", 4, 42);
-		TreeMap<Student, String> treeMap = new TreeMap<>((a, b) -> (a.id - b.id));
+	//	TreeMap<Student, String> treeMap = new TreeMap<>((a, b) -> (a.id - b.id));
+		TreeMap<Student, String> treeMap = new TreeMap<>(new IdAscendingComparator());
 		treeMap.put(student1, "我是学生1，我的名字叫A");
 		treeMap.put(student2, "我是学生2，我的名字叫B");
 		treeMap.put(student3, "我是学生3，我的名字叫C");

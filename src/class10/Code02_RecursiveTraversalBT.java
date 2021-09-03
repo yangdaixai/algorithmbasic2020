@@ -23,7 +23,8 @@ public class Code02_RecursiveTraversalBT {
 		// 3
 	}
 
-	// 先序打印所有节点
+	//先中后，指的是头打印的位置
+	// 先序打印所有节点 //先序遍历, 头左右
 	public static void pre(Node head) {
 		if (head == null) {
 			return;
@@ -32,7 +33,7 @@ public class Code02_RecursiveTraversalBT {
 		pre(head.left);
 		pre(head.right);
 	}
-
+	//中序遍历, 左头右
 	public static void in(Node head) {
 		if (head == null) {
 			return;
@@ -41,7 +42,7 @@ public class Code02_RecursiveTraversalBT {
 		System.out.println(head.value);
 		in(head.right);
 	}
-
+//后续遍历 左右头
 	public static void pos(Node head) {
 		if (head == null) {
 			return;

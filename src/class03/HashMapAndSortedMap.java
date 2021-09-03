@@ -27,16 +27,16 @@ public class HashMapAndSortedMap {
 		HashMap<Integer, String> test = new HashMap<>();
 		Integer a = 19000000;
 		Integer b = 19000000;
-		System.out.println(a == b);
+		System.out.println(a == b);  //按以用传递 false
 
 		test.put(a, "我是3");
-		System.out.println(test.containsKey(b));
+		System.out.println(test.containsKey(b)); //在哈希表中原生的引用基本数据也是按值传递 true
 
 		Zuo z1 = new Zuo(1);
 		Zuo z2 = new Zuo(1);
 		HashMap<Zuo, String> test2 = new HashMap<>();
 		test2.put(z1, "我是z1");
-		System.out.println(test2.containsKey(z2));
+		System.out.println(test2.containsKey(z2));//在哈希表中非原生的引用数据按值引用传递 false
 
 		// UnSortedMap
 		HashMap<Integer, String> map = new HashMap<>();
@@ -114,10 +114,12 @@ public class HashMapAndSortedMap {
 		System.out.println(treeMap.get(4));
 
 		System.out.println("新鲜：");
-
+		//treeMap中的数据是有序的，可以获取最小最大值
+		//基本的引用数据类型(Integetr,String等)，TreeMap知道根据数据怎么排序
+		//如果是自定的类型，需要自己实现compare方法
 		System.out.println(treeMap.firstKey());
 		System.out.println(treeMap.lastKey());
-		// <= 4
+		// <= 4  可以获得小于等于4的值
 		System.out.println(treeMap.floorKey(4));
 		// >= 4
 		System.out.println(treeMap.ceilingKey(4));

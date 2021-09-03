@@ -15,10 +15,10 @@ public class Code01_MergeSort {
 	// T(N) = 2 * T(N / 2) + O(N)
 	// O(N * logN)
 	public static void process(int[] arr, int L, int R) {
-		if (L == R) { // base case
-			return;
-		}
-		int mid = L + ((R - L) >> 1);
+			if (L == R) { // base case
+				return;
+			}
+			int mid = L + ((R - L) >> 1);
 		process(arr, L, mid);
 		process(arr, mid + 1, R);
 		merge(arr, L, mid, R);

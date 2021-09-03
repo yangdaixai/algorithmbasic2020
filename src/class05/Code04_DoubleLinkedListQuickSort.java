@@ -174,9 +174,14 @@ public class Code04_DoubleLinkedListQuickSort {
 					rt = L;
 				}
 			} else {
-				et.next = L;
-				L.last = et;
-				et = L;
+				if (eh == null) {
+					eh = L;
+					et = L;
+				} else {
+					et.next = L;
+					L.last = et;
+					et = L;
+				}
 			}
 			L = tmp;
 		}

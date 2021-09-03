@@ -20,6 +20,7 @@ public class Code01_BFS {
 			System.out.println(cur.value);
 			for (Node next : cur.nexts) {
 				if (!set.contains(next)) {
+					//放入队列同步放入set,防止后续重复放入队列
 					set.add(next);
 					queue.add(next);
 				}

@@ -2,6 +2,12 @@ package class03;
 
 import java.util.Stack;
 
+
+//使用两个栈，一个栈存数据，一个栈存放最小值
+//两个栈同步进栈出栈,
+//最小值栈进栈: 如果进栈的数据小于等于最小值栈栈顶的数据，则将此数据压入最小值栈;
+		//如果进栈的数据打于最小值栈栈顶的数据，则将最小值栈栈顶的数据重复压入最小值栈;
+//最小值栈出栈: 与正常存储数据的栈同步出栈
 public class Code05_GetMinStack {
 
 	public static class MyStack1 {
